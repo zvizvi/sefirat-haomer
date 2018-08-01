@@ -111,6 +111,14 @@ body {
   margin-bottom: 14px;
 }
 
+.content .lamnatseach .lamnatseach-content {
+  display: inline;
+}
+
+.content .lamnatseach .lamnatseach-content .current {
+  text-shadow: 1px 1px 5px #bbb;
+}
+
 .content .lamnatseach big {
   line-height: 39px;
 }
@@ -131,12 +139,20 @@ body {
   clear: both;
 }
 
+.content .ana-bekoach .row .current {
+  text-shadow: 1px 1px 5px #bbb;
+}
+
 .content .ana-bekoach span {
   position: absolute;
   left: 0;
   bottom: 1px;
   font-size: 12px;
   line-height: 32px;
+}
+
+.content .ana-bekoach .ana-bekoach-row-content {
+  display: inline;
 }
 
 .content .ribono {
