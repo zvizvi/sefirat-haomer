@@ -123,14 +123,20 @@ body {
   margin: 0 auto 16px;
 }
 
+.content .ana-bekoach .row {
+  display: block;
+  padding-left: 55px;
+  position: relative;
+  margin-bottom: 2px;
+  clear: both;
+}
+
 .content .ana-bekoach span {
-  display: inline-block;
-  float: left;
+  position: absolute;
+  left: 0;
+  bottom: 1px;
   font-size: 12px;
   line-height: 32px;
-  padding-top: 6px;
-  padding-right: 20px;
-  height: 35px;
 }
 
 .content .ribono {

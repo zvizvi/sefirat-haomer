@@ -34,6 +34,10 @@ $(document).ready(function () {
 
     todayHebrew = todayHebrewObj.toString('h');
     todayOmer = todayHebrewObj.omer();
+    if (!todayOmer) {
+      $('.no-omer').show();
+      todayOmer = 1;
+    }
 
     var weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
     weekDay += 'יום ' + today.format('dddd');
@@ -122,16 +126,6 @@ $(document).ready(function () {
     $('.sefira').text(todaySefira);
   }
 
-  function toggleNoOmer () {
-    if (!todayOmer) {
-      $('.content').hide();
-      $('.no-omer').show();
-    } else {
-      $('.content').show();
-      $('.no-omer').hide();
-    }
-  }
-
   function lagBaomer () {
     if (todayOmer === 33) {
       $('.header').prepend('<span class="lag-baomer"><span class="fire">🔥</span> ל"ג בעומר</span>');
@@ -139,7 +133,6 @@ $(document).ready(function () {
   }
 
   setupDate();
-  toggleNoOmer();
   writeDays();
   writeWeeks();
   writeSefira();
