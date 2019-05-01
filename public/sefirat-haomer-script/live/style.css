@@ -1,0 +1,98 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Assistant', Arial, sans-serif;
+  margin: 0;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  height: 100%;
+}
+
+.header {
+  padding: 0 15px 10px;
+  color: #555;
+  text-align: left;
+}
+
+.lag-baomer {
+  float: right;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.lag-baomer .fire {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.bullet {
+  display: inline-block;
+  margin: 0 5px;
+  color: #888;
+}
+
+.content {
+  font-family: 'SBL Hebrew', 'Assistant', Arial, sans-serif;
+  text-align: center;
+  font-size: 25px;
+  padding: 0 10px;
+}
+
+.content span {
+  display: inline-block;
+}
+
+.content span:empty {
+  display: none;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer .sefira {
+  padding: 5px 0 0;
+}
+
+.footer .sefira:empty {
+  display: none;
+}
+
+.no-omer {
+  color: #999;
+  font-size: 20px;
+}
+
+.hide {
+  display: none;
+}
+
+@media (max-width: 260px) {
+  .header {
+    text-align: center;
+  }
+
+  .header .hebrew-date {
+    display: block;
+  }
+
+  .header .bullet {
+    display: none;
+  }
+}
+
+@media (max-width: 300px) {
+  .header {
+    text-align: center;
+  }
+}
