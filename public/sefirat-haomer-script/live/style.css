@@ -48,6 +48,10 @@ body {
   padding: 0 10px;
 }
 
+.content .omer {
+  line-height: 1.5;
+}
+
 .content span {
   display: inline-block;
 }
