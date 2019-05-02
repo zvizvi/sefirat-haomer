@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ספירת העומר לבעלי אתרים - סקריפט להטמעה באתר</title>
+  <link rel="shortcut icon" href="/assets/icons/favicon.ico" type="image/ico">
+  <meta name="theme-color" content="#5cb85c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="alternate" hreflang="he-il" href="https://sefirat-haomer.ml/sefirat-haomer-script" />
+  <meta name="description" content="מעוניינים להציג את ספירת העומר אצלכם באתר? עכשיו ניתן לעשות זאת, כנסו עכשיו וקבלו קוד הטמעה פשוט" />
+  <link rel="canonical" href="https://sefirat-haomer.ml/sefirat-haomer-script" />
+  <meta property="og:locale" content="he_IL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ספירת העומר לבעלי אתרים - סקריפט להטמעה באתר" />
+  <meta property="og:description" content="מעוניינים להציג את ספירת העומר אצלכם באתר? עכשיו ניתן לעשות זאת, כנסו עכשיו וקבלו קוד הטמעה פשוט" />
+  <meta property="og:url" content="https://sefirat-haomer.ml/sefirat-haomer-script" />
+  <meta property="og:site_name" content="ספירת העומר" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="מעוניינים להציג את ספירת העומר אצלכם באתר? עכשיו ניתן לעשות זאת, כנסו עכשיו וקבלו קוד הטמעה פשוט" />
+  <meta name="twitter:title" content="ספירת העומר לבעלי אתרים - סקריפט להטמעה באתר" />
+  <!-- <meta name="google-site-verification" content="" /> -->
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="/assets/jquery-1.11.3.min.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="/fonts/assistant/assistant.css">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118387807-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-118387807-3');
+  </script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <h1 class="title">סקריפט להטמעת ספירת העומר באתר</h1>
+    </header>
+    <article class="content">
+      <section class="description">
+        מעוניינים להציג את ספירת העומר אצלכם באתר?
+        <br>
+        העתיקו את הקוד הבא לאתר שלכם וקבלו מסגרת עם ספירת העומר היומית אצלכם באתר.
+      </section>
+      <section><small><a href="/">למעבר לנוסח ספירת העומר</a></small></section>
+      <section>
+        <div class="column">
+          <h4>אפשרויות שונות</h4>
+          <div class="field">
+            <label for="nusach">בחר נוסח</label>
+            <select onchange="writeCode()" name="nusach" id="nusach">
+              <option value="sf" selected>ספרד</option>
+              <option value="as">אשכנז</option>
+              <option value="em">עדות המזרח</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="height">גובה מסגרת</label>
+            <input onchange="writeCode()" type="number" name="height" id="height" max="800" value="240">
+          </div>
+          <div class="field">
+            <label for="width">רוחב מסגרת</label>
+            <input onchange="writeCode()" type="number" name="width" id="width" max="2000" value="300">
+          </div>
+          <div class="field">
+            <input onchange="writeCode()" type="checkbox" name="hide-date" id="hide-date">
+            <label for="hide-date">הסתר תאריך</label>
+          </div>
+          <div class="field">
+            <input onchange="writeCode()" type="checkbox" name="hide-sefira" id="hide-sefira">
+            <label for="hide-sefira">הסתר ספירה <small>(חסד שבחסד)</small></label>
+          </div>
+          <div class="field">
+            <label for="font-size">גודל גופן</label>
+            <input onchange="writeCode()" type="number" name="font-size" id="font-size" min="5" max="100" value="25">
+          </div>
+        </div>
+        <div class="column">
+          <h4>תצוגה מקדימה</h4>
+          <iframe id="iframe-preview" src="https://sefirat-haomer.ml/sefirat-haomer-script/live" height="240" width="300" frameborder="0"></iframe>
+        </div>
+      </section>
+      <section class="code-section">
+        <h4>קוד הטמעה</h4>
+        <textarea name="code" id="code" onfocus="this.select()" onkeyup="this.select()" onmouseup="this.select()" readonly><iframe src="https://sefirat-haomer.ml/sefirat-haomer-script/live" height="240" width="300" frameborder="0"></iframe></textarea>
+      </section>
+    </article>
+    <footer class="footer">
+      <nav></nav>
+    </footer>
+  </div>
+</body>
+
+</html>
