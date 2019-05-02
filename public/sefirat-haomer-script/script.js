@@ -1,7 +1,7 @@
 $(document).ready(function () {
   var defaultHeight = 240;
   var defaultWidth = 300;
-  var minHeight = 100;
+  var minHeight = 60;
   var minWidth = 200;
   var maxHeight = 800;
   var maxWidth = 1000;
