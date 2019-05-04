@@ -133,16 +133,17 @@ $(document).ready(function () {
   }
 
   function highlights () {
-    if (todayOmer) {
-      let lamnatseach = $('.lamnatseach-content').text().split(/\s/);
-      lamnatseach[todayOmer + 2] = '<font class="current">' + lamnatseach[todayOmer + 2] + '</font>';
-      $('.lamnatseach-content').html(lamnatseach.join(' '));
-
-      let anaBekoachRow = $('.ana-bekoach .ana-bekoach-row-content').eq(Math.floor(todayOmer / 7));
-      let anaBekoachArray = anaBekoachRow.text().split(/\s/);
-      anaBekoachArray[todayOmer % 7 - 1] = '<font class="current">' + anaBekoachArray[todayOmer % 7 - 1] + '</font>';
-      anaBekoachRow.html(anaBekoachArray.join(' '));
+    if (!todayOmer) {
+      return;
     }
+    var lamnatseach = $('.lamnatseach-content').text().split(/\s/);
+    lamnatseach[todayOmer + 2] = '<font class="current">' + lamnatseach[todayOmer + 2] + '</font>';
+    $('.lamnatseach-content').html(lamnatseach.join(' '));
+
+    var anaBekoachRow = $('.ana-bekoach .ana-bekoach-row-content').eq(Math.floor(todayOmer / 7));
+    var anaBekoachArray = anaBekoachRow.text().split(/\s/);
+    anaBekoachArray[todayOmer % 7 - 1] = '<font class="current">' + anaBekoachArray[todayOmer % 7 - 1] + '</font>';
+    anaBekoachRow.html(anaBekoachArray.join(' '));
   }
 
   setupDate();
