@@ -90,10 +90,18 @@ body {
 }
 
 .content .omer {
+  font-family: 'SBL Hebrew', 'Assistant', Arial, sans-serif;
   font-size: 36px;
   line-height: 1.5;
   margin: 0 auto 30px;
   text-align: center;
+}
+
+.franknatan .content .omer {
+  font-family: 'BA Franknatan', 'SBL Hebrew', 'Assistant', Arial, sans-serif;
+  font-size: 42px;
+  line-height: 1.29;
+  letter-spacing: 0.5px;
 }
 
 .content .omer > span {

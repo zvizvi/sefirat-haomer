@@ -1,0 +1,22 @@
+/* hebrew */
+@font-face {
+  font-family: 'BA Franknatan';
+  font-style: normal;
+  font-weight: 400;
+  src: local('BA Franknatan'), local('BA Franknatan Regular'), url('BAFranknatanRegular.otf') format('opentype');
+  src: local('BA Franknatan'), local('BA Franknatan Regular'), url('BAFranknatanRegular.eot?#iefix') format('embedded-opentype'), url("BAFranknatanRegular.woff") format("woff"), url("BAFranknatanRegular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: 'BA Franknatan';
+  font-style: normal;
+  font-weight: 300;
+  src: local('BA Franknatan Light'), url('BAFranknatanLight.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'BA Franknatan';
+  font-style: normal;
+  font-weight: 600;
+  src: local('BA Franknatan Bold'), url('BAFranknatanBold.otf') format('opentype');
+}

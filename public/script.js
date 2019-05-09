@@ -3,6 +3,11 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+  var urlOptions = jQuery.unparam(location.search.split('?')[1]);
+  if (urlOptions['franknatan'] === 'true') {
+    $(document.body).addClass('franknatan');
+  }
+
   var moment = window.moment;
   var Hebcal = window.Hebcal;
   var options, today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
