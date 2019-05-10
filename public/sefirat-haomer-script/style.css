@@ -109,6 +109,46 @@ body {
 
 .footer {
   text-align: center;
+  margin: 30px auto 0;
+  padding: 0 10px 30px;
+  max-width: 730px;
+  width: 97%;
+}
+
+.footer nav.main-nav {
+  padding: 40px 0 30px;
+  border-top: solid 1px #333;
+  display: flex;
+}
+
+.footer nav.main-nav a {
+  display: block;
+  border-radius: 6px;
+  padding: 12px 10px;
+  margin-left: 14px;
+  text-decoration: none;
+  box-shadow: 0 1px 7px #aaa;
+  flex: 1;
+  transition: 0.1s;
+}
+
+.footer nav.main-nav a:active {
+  box-shadow: 0 1px 4px #aaa, inset 0 2px 2px #aaa;
+}
+
+.footer nav.main-nav a img {
+  width: 20px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.footer nav.main-nav a span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.footer nav.main-nav a:last-child {
+  margin-left: 0;
 }
 
 @media (max-width: 420px) {
@@ -124,5 +164,16 @@ body {
 @media (max-width: 260px) {
   .content textarea#code {
     height: 300px;
+  }
+}
+
+@media (max-width: 490px) {
+  .footer nav.main-nav {
+    flex-wrap: wrap;
+  }
+
+  .footer nav.main-nav a {
+    margin: 0 0 20px;
+    flex: 100%;
   }
 }
