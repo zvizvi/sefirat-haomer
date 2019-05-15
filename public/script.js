@@ -23,6 +23,7 @@ $(document).ready(function () {
     urlOptions.nusach = options.nusach;
     location.search = $.param(urlOptions);
   });
+  $('.content').removeClass('sf as em').addClass(options.nusach);
 
   var numberLetterList = {
     '1': 'אֶחָד', '2': 'שְׁנֵי', '2a': 'שְׁנַיִם', '3': 'שְׁלֹשָׁה', '4': 'אַרְבָּעָה', '5': 'חֲמִשָּׁה', '6': 'שִׁשָּׁה', '7': 'שִׁבְעָה', '8': 'שְׁמוֹנָה', '9': 'תִּשְׁעָה', '10': 'עָשָׂר', '11': 'אַחַד עָשָׂר', '12': 'שְׁנֵים עָשָׂר', '20': 'עֶשְׂרִים', '30': 'שְׁלֹשִׁים', '40': 'אַרְבָּעִים'

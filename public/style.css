@@ -24,7 +24,7 @@ body {
 }
 
 .header .nusach {
- float: right;
+  float: right;
 }
 
 .lag-baomer {
@@ -78,7 +78,19 @@ body {
   line-height: 36px;
 }
 
-.content .leshem-yhud {
+.content .help-text {
+  font-size: 17px;
+  font-family: 'Assistant', Arial, sans-serif;
+  display: inline-block;
+  margin: 0 15px 0 5px;
+}
+
+.content .help-text:first-child {
+  margin-right: 0;
+}
+
+.content .leshem-yhud,
+.content .leshem-yhud-em {
   font-size: 22px;
   margin-bottom: 16px;
 }
@@ -228,6 +240,18 @@ body {
 
 .hide {
   display: none;
+}
+
+/* nusach */
+
+.content .leshem-yhud-em,
+.content.em .leshem-yhud,
+.content.em .ribono {
+  display: none;
+}
+
+.content.em .leshem-yhud-em {
+  display: block;
 }
 
 @media (max-width: 260px) {
