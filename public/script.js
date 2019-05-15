@@ -21,10 +21,7 @@ $(document).ready(function () {
   $('#nusach').change(function (event) {
     options.nusach = $('#nusach').val();
     urlOptions.nusach = options.nusach;
-    var url = location.origin + '/?' + $.param(urlOptions);
-    history.pushState({ Title: document.title, Url: url }, document.title, url);
-    writeDays();
-    writeWeeks();
+    location.search = $.param(urlOptions);
   });
 
   var numberLetterList = {
