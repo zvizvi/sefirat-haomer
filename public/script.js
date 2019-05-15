@@ -3,7 +3,7 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
-  var urlOptions = jQuery.unparam(location.search.split('?')[1]);
+  var urlOptions = $.unparam(location.search.split('?')[1]);
   if (urlOptions['franknatan'] === 'true') {
     $(document.body).addClass('franknatan');
   }
@@ -11,9 +11,18 @@ $(document).ready(function () {
   var moment = window.moment;
   var Hebcal = window.Hebcal;
   var options, today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
-  options = {
-    nusach: 'sf'
-  };
+  options = {};
+  if (['sf', 'as', 'em'].indexOf(urlOptions['nusach']) > 0) {
+    options.nusach = urlOptions['nusach'];
+  } else {
+    options.nusach = 'sf';
+  }
+  $('#nusach').val(options.nusach);
+  $('#nusach').change(function (event) {
+    options.nusach = $('#nusach').val();
+    urlOptions.nusach = options.nusach;
+    location.search = $.param(urlOptions);
+  });
 
   var numberLetterList = {
     '1': 'אֶחָד', '2': 'שְׁנֵי', '2a': 'שְׁנַיִם', '3': 'שְׁלֹשָׁה', '4': 'אַרְבָּעָה', '5': 'חֲמִשָּׁה', '6': 'שִׁשָּׁה', '7': 'שִׁבְעָה', '8': 'שְׁמוֹנָה', '9': 'תִּשְׁעָה', '10': 'עָשָׂר', '11': 'אַחַד עָשָׂר', '12': 'שְׁנֵים עָשָׂר', '20': 'עֶשְׂרִים', '30': 'שְׁלֹשִׁים', '40': 'אַרְבָּעִים'
@@ -157,4 +166,5 @@ $(document).ready(function () {
   writeSefira();
   lagBaomer();
   highlights();
+  $('.nusach').show();
 });

@@ -23,6 +23,10 @@ body {
   margin: auto;
 }
 
+.header .nusach {
+ float: right;
+}
+
 .lag-baomer {
   float: right;
   display: inline-block;
