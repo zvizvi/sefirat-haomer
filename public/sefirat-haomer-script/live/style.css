@@ -49,6 +49,9 @@ body {
 }
 
 .content .omer {
+  display: block;
+  text-decoration: none;
+  color: #000;
   line-height: 1.5;
 }
 

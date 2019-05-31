@@ -21,6 +21,7 @@ $(document).ready(function () {
     }
     $('.omer').css('fontSize', size);
   }
+  $('.omer').attr('href', 'https://sefirat-haomer.ml/?source=iframe&nusach=' + options.nusach);
 
   var numberLetterList = {
     '1': 'אֶחָד',
