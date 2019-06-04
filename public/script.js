@@ -58,6 +58,7 @@ $(document).ready(function () {
     weekDay += 'יום ' + today.format('dddd');
     $('.week-day').text(weekDay);
     $('.hebrew-date').text(todayHebrew).attr('datetime', moment().format());
+    document.title += (', ' + Hebcal.gematriya(todayHebrewObj.getYearObject('h').year % 5000));
   }
 
   function getDays (number) {
