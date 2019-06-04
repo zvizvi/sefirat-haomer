@@ -17,6 +17,9 @@ $(document).ready(function () {
   } else {
     options.nusach = 'sf';
   }
+  if (['as', 'em'].indexOf(options.nusach) > 0) {
+    $('link[rel=canonical]')[0].href += '?nusach=' + options.nusach;
+  }
   $('#nusach').val(options.nusach);
   $('#nusach').change(function (event) {
     options.nusach = $('#nusach').val();
