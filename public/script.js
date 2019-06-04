@@ -57,7 +57,7 @@ $(document).ready(function () {
     var weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
     weekDay += 'יום ' + today.format('dddd');
     $('.week-day').text(weekDay);
-    $('.hebrew-date').text(todayHebrew);
+    $('.hebrew-date').text(todayHebrew).attr('datetime', moment().format());
   }
 
   function getDays (number) {
