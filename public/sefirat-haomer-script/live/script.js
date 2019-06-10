@@ -65,9 +65,8 @@ $(document).ready(function () {
 
     var weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
     weekDay += 'יום ' + today.format('dddd');
-    if (options.hideDate) {
-      $('.header').hide();
-    } else {
+    if (!options.hideDate) {
+      $('.header').show();
       $('.week-day').text(weekDay);
       $('.hebrew-date').text(todayHebrew);
     }
@@ -156,11 +155,11 @@ $(document).ready(function () {
 
   function toggleNoOmer () {
     if (!todayOmer) {
-      $('.omer').addClass('hide');
-      $('.no-omer').removeClass('hide');
+      $('.omer').hide();
+      $('.no-omer').show();
     } else {
-      $('.omer').removeClass('hide');
-      $('.no-omer').addClass('hide');
+      $('.omer').show();
+      $('.no-omer').hide();
     }
   }
 
