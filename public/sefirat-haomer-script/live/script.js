@@ -61,6 +61,11 @@ function setupDate () {
 
   todayHebrew = todayHebrewObj.toString('h');
   todayOmer = todayHebrewObj.omer();
+  try {
+    if (top.location.href === 'https://sefirat-haomer.ml/sefirat-haomer-script/') {
+      todayOmer = todayOmer || 1;
+    }
+  } catch (error) { }
 
   var weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
   weekDay += 'יום ' + today.format('dddd');
