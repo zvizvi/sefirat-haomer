@@ -24,10 +24,13 @@ body {
   text-align: left;
 }
 
-.lag-baomer {
-  float: right;
-  display: inline-block;
-  margin-right: 20px;
+@media (min-width: 340px) {
+  .lag-baomer {
+    float: right;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: -1.5px;
+  }
 }
 
 .lag-baomer .fire {

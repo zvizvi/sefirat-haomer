@@ -169,7 +169,7 @@ function toggleNoOmer () {
 
 function lagBaomer () {
   if (todayOmer === 33 && !options.hideDate) {
-    $('.header').prepend('<span class="lag-baomer"><span class="fire">🔥</span> ל"ג בעומר</span>');
+    $('.header').prepend('<div class="lag-baomer"><span class="fire">🔥</span> ל"ג בעומר</div>');
   }
 }
 
