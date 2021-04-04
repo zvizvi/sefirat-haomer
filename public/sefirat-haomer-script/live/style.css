@@ -21,16 +21,7 @@ body {
 .header {
   padding: 0 15px 10px;
   color: #555;
-  text-align: left;
-}
-
-@media (min-width: 340px) {
-  .lag-baomer {
-    float: right;
-    display: inline-block;
-    margin-right: 20px;
-    margin-top: -1.5px;
-  }
+  text-align: center;
 }
 
 .lag-baomer .fire {
@@ -88,21 +79,11 @@ body {
 }
 
 @media (max-width: 260px) {
-  .header {
-    text-align: center;
-  }
-
   .header .hebrew-date {
     display: block;
   }
 
   .header .bullet {
     display: none;
-  }
-}
-
-@media (max-width: 300px) {
-  .header {
-    text-align: center;
   }
 }
