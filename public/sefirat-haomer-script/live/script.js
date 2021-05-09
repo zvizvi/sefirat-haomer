@@ -20,7 +20,7 @@ if (options.fontSize) {
   }
   $('.omer').css('fontSize', size);
 }
-$('.omer').attr('href', 'https://sefirat-haomer.ml/?source=iframe&nusach=' + options.nusach);
+$('.omer').attr('href', 'https://sefirat-haomer.vercel.app/?source=iframe&nusach=' + options.nusach);
 
 var numberLetterList = {
   '1': 'אֶחָד',
@@ -62,7 +62,7 @@ function setupDate () {
   todayHebrew = todayHebrewObj.toString('h');
   todayOmer = todayHebrewObj.omer();
   try {
-    if (top.location.href === 'https://sefirat-haomer.ml/sefirat-haomer-script/') {
+    if (top.location.href === 'https://sefirat-haomer.vercel.app/sefirat-haomer-script/') {
       todayOmer = todayOmer || 1;
     }
   } catch (error) { }
