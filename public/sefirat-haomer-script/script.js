@@ -7,7 +7,7 @@ $(document).ready(function () {
   var maxWidth = 1000;
 
   window.writeCode = function name (params) {
-    var iframeSrc = 'https://sefirat-haomer.ml/sefirat-haomer-script/live/?nusach=' +
+    var iframeSrc = 'https://sefirat-haomer.vercel.app/sefirat-haomer-script/live/?nusach=' +
       $('#nusach').val();
     iframeSrc += $('#hide-date').prop('checked') ? '&hideDate=true' : '';
     iframeSrc += $('#hide-sefira').prop('checked') ? '&hideSefira=true' : '';
