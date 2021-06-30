@@ -1,7 +1,3 @@
-$('.content').on('contextmenu', function (e) {
-  e.preventDefault();
-});
-
 var urlOptions = $.unparam(location.search.split('?')[1]);
 if (urlOptions['franknatan'] === 'true') {
   $(document.body).addClass('franknatan');
