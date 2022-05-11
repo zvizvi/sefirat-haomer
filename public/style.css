@@ -83,6 +83,10 @@ body {
   margin: 0 15px 0 5px;
 }
 
+.content het {
+  display: inline-block;
+}
+
 .content .help-text:first-child {
   margin-right: 0;
 }
