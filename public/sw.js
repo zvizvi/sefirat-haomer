@@ -6,11 +6,9 @@ const urlsToCache = [
   '/assets/hebcal.noloc.min.js',
   '/script.js',
   '/fonts/sbl/sbl.css',
-  '/fonts/assistant/assistant.css',
   '/script.js',
   '/assets/icons/logo-128.png',
-  '/fonts/sbl/SBL_Hbrw.ttf',
-  '/fonts/assistant/assistant.hebrew.400.woff2'
+  '/fonts/sbl/SBL_Hbrw.ttf'
 ];
 
 self.addEventListener('install', (event) => {
