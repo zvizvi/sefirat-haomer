@@ -2,8 +2,6 @@ var CACHE_NAME = 'site-cache-v1';
 var urlsToCache = [
   '/',
   '/style.css',
-  '/assets/jquery-1.11.3.min.js',
-  '/assets/jquery.unparam.min.js',
   '/assets/moment-with-locales.min.js',
   '/assets/hebcal.noloc.min.js',
   '/script.js',

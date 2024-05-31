@@ -1,46 +1,44 @@
-$(document).on('contextmenu', function (e) {
+document.addEventListener('contextmenu', (e) => {
   e.preventDefault();
 });
 
-var moment = window.moment;
-var Hebcal = window.Hebcal;
-var options, today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
-var urlOptions = jQuery.unparam(location.search.split('?')[1]);
-options = {
+let today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
+const moment = window.moment;
+const Hebcal = window.Hebcal;
+const params = new URLSearchParams(location.search);
+const urlOptions = Object.fromEntries(params.entries());
+const options = {
   nusach: urlOptions.nusach || 'sf',
   fontSize: urlOptions.fontSize,
   hideDate: urlOptions.hideDate === 'true',
   hideSefira: urlOptions.hideSefira === 'true'
 };
 
+const omerLink = document.querySelector('.omer');
 if (options.fontSize) {
-  let size = options.fontSize;
-  if (!isNaN(options.fontSize)) {
-    size += 'px';
-  }
-  $('.omer').css('fontSize', size);
+  omerLink.style.fontSize = options.fontSize + 'px';
 }
-$('.omer').attr('href', 'https://sefirat-haomer.vercel.app/?source=iframe&nusach=' + options.nusach);
+omerLink.setAttribute('href', `https://sefirat-haomer.vercel.app/?source=iframe&nusach=${options.nusach}`);
 
-var numberLetterList = {
-  '1': 'אֶחָד',
-  '2': 'שְׁנֵי',
+const numberLetterList = {
+  1: 'אֶחָד',
+  2: 'שְׁנֵי',
   '2a': 'שְׁנַיִם',
-  '3': 'שְׁלֹשָׁה',
-  '4': 'אַרְבָּעָה',
-  '5': 'חֲמִשָּׁה',
-  '6': 'שִׁשָּׁה',
-  '7': 'שִׁבְעָה',
-  '8': 'שְׁמוֹנָה',
-  '9': 'תִּשְׁעָה',
-  '10': 'עָשָׂר',
-  '11': 'אַחַד עָשָׂר',
-  '12': 'שְׁנֵים עָשָׂר',
-  '20': 'עֶשְׂרִים',
-  '30': 'שְׁלֹשִׁים',
-  '40': 'אַרְבָּעִים'
+  3: 'שְׁלֹשָׁה',
+  4: 'אַרְבָּעָה',
+  5: 'חֲמִשָּׁה',
+  6: 'שִׁשָּׁה',
+  7: 'שִׁבְעָה',
+  8: 'שְׁמוֹנָה',
+  9: 'תִּשְׁעָה',
+  10: 'עָשָׂר',
+  11: 'אַחַד עָשָׂר',
+  12: 'שְׁנֵים עָשָׂר',
+  20: 'עֶשְׂרִים',
+  30: 'שְׁלֹשִׁים',
+  40: 'אַרְבָּעִים'
 };
-var sefiraList = ['חסד', 'גבורה', 'תפארת', 'נצח', 'הוד', 'יסוד', 'מלכות'];
+const sefiraList = ['חסד', 'גבורה', 'תפארת', 'נצח', 'הוד', 'יסוד', 'מלכות'];
 
 moment.locale('he');
 
@@ -67,17 +65,20 @@ function setupDate () {
     }
   } catch (error) { }
 
-  var weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
+  let weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
   weekDay += 'יום ' + today.format('dddd');
   if (!options.hideDate) {
-    $('.header').show();
-    $('.week-day').text(weekDay);
-    $('.hebrew-date').text(todayHebrew);
+    const header = document.querySelector('.header');
+    const weekDayElement = document.querySelector('.week-day');
+    const hebrewDateElement = document.querySelector('.hebrew-date');
+    header.style.display = 'block';
+    weekDayElement.textContent = weekDay;
+    hebrewDateElement.textContent = todayHebrew;
   }
 }
 
 function getDays (number) {
-  var day;
+  let day;
 
   if (number === 1) {
     day = 'יוֹם אֶחָד';
@@ -89,7 +90,7 @@ function getDays (number) {
     if ([11, 12, 20, 30, 40].indexOf(number) >= 0) {
       day = numberLetterList[number];
     } else {
-      var stringNumber = number.toString();
+      const stringNumber = number.toString();
       day = (numberLetterList[stringNumber[1] + 'a'] || numberLetterList[stringNumber[1]]);
       day += ' ';
       day += (stringNumber[0] === '3') ? 'וּ' : (number > 20) ? 'וְ' : '';
@@ -101,24 +102,25 @@ function getDays (number) {
 }
 
 function writeDays () {
-  var day = getDays(todayOmer);
-  var suffix = '';
+  const day = getDays(todayOmer);
+  let suffix = '';
   if (todayOmer && todayOmer < 7) {
     suffix = options.nusach === 'sf' ? ' לָעוֹמֶר' : options.nusach === 'as' ? ' בָּעוֹמֶר' : '';
   }
   if (options.nusach === 'em') {
     suffix = ' לָעוֹמֶר';
   }
-  $('.day').text(day + suffix);
+  const dayElement = document.querySelector('.day');
+  dayElement.textContent = day + suffix;
 }
 
 function writeWeeks () {
   if (todayOmer < 7) {
     return;
   }
-  var weeks = Math.floor(todayOmer / 7);
-  var leftDays = (todayOmer % 7);
-  var week = 'שֶׁהֵם ';
+  const weeks = Math.floor(todayOmer / 7);
+  const leftDays = (todayOmer % 7);
+  let week = 'שֶׁהֵם ';
 
   if (weeks === 1) {
     week += 'שָׁבוּעַ אֶחָד ';
@@ -139,37 +141,38 @@ function writeWeeks () {
     week += getDays(leftDays);
   }
 
-  var suffix = (options.nusach === 'sf' ? ' לָעוֹמֶר' : options.nusach === 'as' ? ' בָּעוֹמֶר' : '');
-  $('.week').text(week + suffix);
+  const suffix = (options.nusach === 'sf' ? ' לָעוֹמֶר' : options.nusach === 'as' ? ' בָּעוֹמֶר' : '');
+  document.querySelector('.week').textContent = week + suffix;
 }
 
 function writeSefira () {
   if (!todayOmer) {
     return;
   }
-  var todaySefira = (sefiraList[(todayOmer % 7) - 1] || sefiraList[6]);
+  let todaySefira = (sefiraList[(todayOmer % 7) - 1] || sefiraList[6]);
   todaySefira += ' שב';
   if (todayOmer % 7) {
     todaySefira += sefiraList[Math.floor(todayOmer / 7)];
   } else {
     todaySefira += sefiraList[Math.floor(todayOmer / 7) - 1];
   }
-  $('.sefira').text(todaySefira);
+  const sefiraElement = document.querySelector('.sefira');
+  sefiraElement.textContent = todaySefira;
 }
 
 function toggleNoOmer () {
-  if (!todayOmer) {
-    $('.omer').hide();
-    $('.no-omer').show();
-  } else {
-    $('.omer').show();
-    $('.no-omer').hide();
-  }
+  const omer = document.querySelector('.omer');
+  const noOmer = document.querySelector('.no-omer');
+  omer.style.display = todayOmer ? 'block' : 'none';
+  noOmer.style.display = todayOmer ? 'none' : 'block';
 }
 
 function lagBaomer () {
   if (todayOmer === 33 && !options.hideDate) {
-    $('.header').prepend('<div class="lag-baomer"><span class="fire">🔥</span> ל"ג בעומר</div>');
+    const lagBaomer = document.createElement('div');
+    lagBaomer.classList.add('lag-baomer');
+    lagBaomer.innerHTML = '<span class="fire">🔥</span> ל"ג בעומר';
+    document.querySelector('.header').prepend(lagBaomer);
   }
 }
 

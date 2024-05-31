@@ -1,35 +1,39 @@
-$(document).ready(function () {
-  var defaultHeight = 240;
-  var defaultWidth = 300;
-  var minHeight = 60;
-  var minWidth = 200;
-  var maxHeight = 800;
-  var maxWidth = 1000;
+const defaultHeight = 240;
+const defaultWidth = 300;
+const minHeight = 60;
+const minWidth = 200;
+const maxHeight = 800;
+const maxWidth = 1000;
 
-  window.writeCode = function name (params) {
-    var iframeSrc = 'https://sefirat-haomer.vercel.app/sefirat-haomer-script/live/?nusach=' +
-      $('#nusach').val();
-    iframeSrc += $('#hide-date').prop('checked') ? '&hideDate=true' : '';
-    iframeSrc += $('#hide-sefira').prop('checked') ? '&hideSefira=true' : '';
-    iframeSrc += '&fontSize=' + $('#font-size').val();
+window.writeCode = function name (params) {
+  const nusach = document.getElementById('nusach').value;
+  const hideDateCheckbox = document.getElementById('hide-date');
+  const hideSefiraCheckbox = document.getElementById('hide-sefira');
+  const fontSizeInput = document.getElementById('font-size');
+  let iframeSrc = 'https://sefirat-haomer.vercel.app/sefirat-haomer-script/live/?nusach=' + nusach;
+  iframeSrc += hideDateCheckbox.checked ? '&hideDate=true' : '';
+  iframeSrc += hideSefiraCheckbox.checked ? '&hideSefira=true' : '';
+  iframeSrc += '&fontSize=' + fontSizeInput.value;
 
-    var height = $('#height').val();
-    var width = $('#width').val();
+  const heightEl = document.getElementById('height');
+  const widthEl = document.getElementById('width');
+  let height = heightEl.value;
+  let width = widthEl.value;
 
-    height = isNaN(height) ? defaultHeight : height < minHeight ? minHeight : height > maxHeight ? maxHeight : height;
-    width = isNaN(width) ? defaultWidth : width < minWidth ? minWidth : width > maxWidth ? maxWidth : width;
+  height = isNaN(height) ? defaultHeight : height < minHeight ? minHeight : height > maxHeight ? maxHeight : height;
+  width = isNaN(width) ? defaultWidth : width < minWidth ? minWidth : width > maxWidth ? maxWidth : width;
 
-    $('#height').val(height);
-    $('#width').val(width);
+  heightEl.value = height;
+  widthEl.value = width;
 
-    var code = '<iframe src="' +
+  const code = '<iframe src="' +
       iframeSrc +
       '" width="' + height +
       '" height="' + width +
       '" frameborder="0"></iframe>';
-    $('iframe#iframe-preview')[0].src = iframeSrc;
-    $('iframe#iframe-preview')[0].height = height;
-    $('iframe#iframe-preview')[0].width = width;
-    $('textarea#code').val(code);
-  };
-});
+  const iframe = document.querySelector('iframe#iframe-preview');
+  iframe.src = iframeSrc;
+  iframe.height = height;
+  iframe.width = width;
+  document.querySelector('textarea#code').value = code;
+};

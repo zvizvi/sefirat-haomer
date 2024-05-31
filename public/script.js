@@ -1,32 +1,36 @@
-var urlOptions = $.unparam(location.search.split('?')[1]);
-if (urlOptions['franknatan'] === 'true') {
-  $(document.body).addClass('franknatan');
+const params = new URLSearchParams(location.search);
+const urlOptions = Object.fromEntries(params.entries());
+if (urlOptions.franknatan === 'true') {
+  document.body.classList.add('franknatan');
 }
 
-var moment = window.moment;
-var Hebcal = window.Hebcal;
-var options, today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
-options = {};
-if (['sf', 'as', 'em'].indexOf(urlOptions['nusach']) > 0) {
-  options.nusach = urlOptions['nusach'];
+let today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
+const moment = window.moment;
+const Hebcal = window.Hebcal;
+const options = {};
+if (['sf', 'as', 'em'].includes(urlOptions.nusach)) {
+  options.nusach = urlOptions.nusach;
 } else {
   options.nusach = 'sf';
 }
-if (['as', 'em'].indexOf(options.nusach) > 0) {
-  $('link[rel=canonical]')[0].href += '?nusach=' + options.nusach;
+if (['as', 'em'].includes(options.nusach)) {
+  document.querySelector('link[rel=canonical]').href += '?nusach=' + options.nusach;
 }
-$('#nusach').val(options.nusach);
-$('#nusach').change(function (event) {
-  options.nusach = $('#nusach').val();
+const nusachEl = document.getElementById('nusach');
+nusachEl.value = options.nusach;
+nusachEl.addEventListener('change', (event) => {
+  options.nusach = nusachEl.value;
   urlOptions.nusach = options.nusach;
-  location.search = $.param(urlOptions);
+  location.search = new URLSearchParams(urlOptions).toString();
 });
-$('.content').removeClass('sf as em').addClass(options.nusach);
+const contentEl = document.querySelector('.content');
+contentEl.classList.remove('sf', 'as', 'em');
+contentEl.classList.add(options.nusach);
 
-var numberLetterList = {
-  '1': 'אֶחָד', '2': 'שְׁנֵי', '2a': 'שְׁנַיִם', '3': 'שְׁלֹשָׁה', '4': 'אַרְבָּעָה', '5': 'חֲמִשָּׁה', '6': 'שִׁשָּׁה', '7': 'שִׁבְעָה', '8': 'שְׁמוֹנָה', '9': 'תִּשְׁעָה', '10': 'עָשָׂר', '11': 'אַחַד עָשָׂר', '12': 'שְׁנֵים עָשָׂר', '20': 'עֶשְׂרִים', '30': 'שְׁלֹשִׁים', '40': 'אַרְבָּעִים'
+const numberLetterList = {
+  1: 'אֶחָד', 2: 'שְׁנֵי', '2a': 'שְׁנַיִם', 3: 'שְׁלֹשָׁה', 4: 'אַרְבָּעָה', 5: 'חֲמִשָּׁה', 6: 'שִׁשָּׁה', 7: 'שִׁבְעָה', 8: 'שְׁמוֹנָה', 9: 'תִּשְׁעָה', 10: 'עָשָׂר', 11: 'אַחַד עָשָׂר', 12: 'שְׁנֵים עָשָׂר', 20: 'עֶשְׂרִים', 30: 'שְׁלֹשִׁים', 40: 'אַרְבָּעִים'
 };
-var sefiraList = ['חסד', 'גבורה', 'תפארת', 'נצח', 'הוד', 'יסוד', 'מלכות'];
+const sefiraList = ['חסד', 'גבורה', 'תפארת', 'נצח', 'הוד', 'יסוד', 'מלכות'];
 
 moment.locale('he');
 
@@ -48,19 +52,22 @@ function setupDate () {
   todayHebrew = todayHebrewObj.toString('h');
   todayOmer = todayHebrewObj.omer();
   if (!todayOmer) {
-    $('.no-omer').show();
+    document.querySelector('.no-omer').style.display = 'block';
     todayOmer = 1;
   }
 
-  var weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
+  let weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
   weekDay += 'יום ' + today.format('dddd');
-  $('.week-day').text(weekDay);
-  $('.hebrew-date').text(todayHebrew).attr('datetime', moment().format());
+  const weekDayElement = document.querySelector('.week-day');
+  const hebrewDateElement = document.querySelector('.hebrew-date');
+  weekDayElement.textContent = weekDay;
+  hebrewDateElement.textContent = todayHebrew;
+  hebrewDateElement.setAttribute('datetime', moment().format());
   document.title += (', ' + Hebcal.gematriya(todayHebrewObj.getYearObject('h').year % 5000));
 }
 
 function getDays (number) {
-  var day;
+  let day;
 
   if (number === 1) {
     day = 'יוֹם אֶחָד';
@@ -72,7 +79,7 @@ function getDays (number) {
     if ([11, 12, 20, 30, 40].indexOf(number) >= 0) {
       day = numberLetterList[number];
     } else {
-      var stringNumber = number.toString();
+      const stringNumber = number.toString();
       day = (numberLetterList[stringNumber[1] + 'a'] || numberLetterList[stringNumber[1]]);
       day += ' ';
       day += (stringNumber[0] === '3') ? 'וּ' : (number > 20) ? 'וְ' : '';
@@ -84,24 +91,25 @@ function getDays (number) {
 }
 
 function writeDays () {
-  var day = getDays(todayOmer);
-  var suffix = '';
+  const day = getDays(todayOmer);
+  let suffix = '';
   if (todayOmer && todayOmer < 7) {
     suffix = options.nusach === 'sf' ? ' לָעוֹמֶר' : options.nusach === 'as' ? ' בָּעוֹמֶר' : '';
   }
   if (options.nusach === 'em') {
     suffix = ' לָעוֹמֶר';
   }
-  $('.day').text(day + suffix);
+  const dayElement = document.querySelector('.day');
+  dayElement.textContent = day + suffix;
 }
 
 function writeWeeks () {
   if (todayOmer < 7) {
     return;
   }
-  var weeks = Math.floor(todayOmer / 7);
-  var leftDays = (todayOmer % 7);
-  var week = 'שֶׁהֵם ';
+  const weeks = Math.floor(todayOmer / 7);
+  const leftDays = (todayOmer % 7);
+  let week = 'שֶׁהֵם ';
 
   if (weeks === 1) {
     week += 'שָׁבוּעַ אֶחָד ';
@@ -122,27 +130,32 @@ function writeWeeks () {
     week += getDays(leftDays);
   }
 
-  var suffix = (options.nusach === 'sf' ? ' לָעוֹמֶר' : options.nusach === 'as' ? ' בָּעוֹמֶר' : '');
-  $('.week').text(week + suffix);
+  const suffix = (options.nusach === 'sf' ? ' לָעוֹמֶר' : options.nusach === 'as' ? ' בָּעוֹמֶר' : '');
+  document.querySelector('.week').textContent = week + suffix;
 }
 
 function writeSefira () {
   if (!todayOmer) {
     return;
   }
-  var todaySefira = (sefiraList[(todayOmer % 7) - 1] || sefiraList[6]);
+  let todaySefira = (sefiraList[(todayOmer % 7) - 1] || sefiraList[6]);
   todaySefira += ' שב';
   if (todayOmer % 7) {
     todaySefira += sefiraList[Math.floor(todayOmer / 7)];
   } else {
     todaySefira += sefiraList[Math.floor(todayOmer / 7) - 1];
   }
-  $('.sefira').text(todaySefira);
+  const sefiraElement = document.querySelector('.sefira');
+  sefiraElement.textContent = todaySefira;
 }
 
 function lagBaomer () {
   if (todayOmer === 33) {
-    $('.header').prepend('<span class="lag-baomer"><span class="fire">🔥</span> ל"ג בעומר</span>');
+    const header = document.querySelector('.header');
+    const lagBaomer = document.createElement('span');
+    lagBaomer.classList.add('lag-baomer');
+    lagBaomer.innerHTML = '<span class="fire">🔥</span> ל"ג בעומר';
+    header.prepend(lagBaomer);
   }
 }
 
@@ -150,14 +163,15 @@ function highlights () {
   if (!todayOmer) {
     return;
   }
-  var lamnatseach = $('.lamnatseach-content').text().split(/\s/);
+  const lamnatseachElement = document.querySelector('.lamnatseach-content');
+  const lamnatseach = lamnatseachElement.textContent.split(/\s/);
   lamnatseach[todayOmer + 2] = '<font class="current">' + lamnatseach[todayOmer + 2] + '</font>';
-  $('.lamnatseach-content').html(lamnatseach.join(' '));
+  lamnatseachElement.innerHTML = lamnatseach.join(' ');
 
-  var anaBekoachRow = $('.ana-bekoach .ana-bekoach-row-content').eq(Math.floor(todayOmer / 7));
-  var anaBekoachArray = anaBekoachRow.text().split(/\s/);
+  const anaBekoachRow = document.querySelectorAll('.ana-bekoach .ana-bekoach-row-content')[Math.floor(todayOmer / 7)];
+  const anaBekoachArray = anaBekoachRow.textContent.split(/\s/);
   anaBekoachArray[todayOmer % 7 - 1] = '<font class="current">' + anaBekoachArray[todayOmer % 7 - 1] + '</font>';
-  anaBekoachRow.html(anaBekoachArray.join(' '));
+  anaBekoachRow.innerHTML = anaBekoachArray.join(' ');
 }
 
 setupDate();
@@ -166,4 +180,4 @@ writeWeeks();
 writeSefira();
 lagBaomer();
 highlights();
-$('.nusach').show();
+document.querySelector('.nusach').style.display = 'block';
