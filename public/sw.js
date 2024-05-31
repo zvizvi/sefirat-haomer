@@ -1,5 +1,5 @@
-var CACHE_NAME = 'site-cache-v1';
-var urlsToCache = [
+const CACHE_NAME = 'site-cache-v1';
+const urlsToCache = [
   '/',
   '/style.css',
   '/assets/moment-with-locales.min.js',
@@ -13,37 +13,35 @@ var urlsToCache = [
   '/fonts/assistant/assistant.hebrew.400.woff2'
 ];
 
-self.addEventListener('install', function (event) {
-  // Perform install steps
+self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function (cache) {
+      .then((cache) => {
         console.log('Opened cache');
         return cache.addAll(urlsToCache);
       })
   );
 });
 
-var DYNAMIC_CACHE_NAME = 'site-dynamic-cache-v1';
-self.addEventListener('fetch', function (event) {
+const DYNAMIC_CACHE_NAME = 'site-dynamic-cache-v1';
+self.addEventListener('fetch', (event) => {
   caches.match(event.request)
-    .then(function (response) {
+    .then((response) => {
       if (response) {
         return response;
       }
 
-      var fetchRequest = event.request.clone();
+      const fetchRequest = event.request.clone();
 
       return fetch(fetchRequest)
-        .then(function (response) {
-          // Validate that the response is valid
+        .then((response) => {
           if (!response || response.status !== 200 || response.type !== 'basic') {
             return response;
           }
 
-          var responseToCache = response.clone();
+          const responseToCache = response.clone();
           caches.open(DYNAMIC_CACHE_NAME)
-            .then(function () {
+            .then(() => {
               caches.put(event.request, responseToCache);
             });
 
@@ -53,14 +51,12 @@ self.addEventListener('fetch', function (event) {
   return event.respondWith(fetch(event.request));
 });
 
-self.addEventListener('activate', function (event) {
-  // console.log('Activating the Service Worker ', event);
+self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then(function (keyList) {
-        return Promise.all(keyList.map(function (key) {
+      .then((keyList) => {
+        return Promise.all(keyList.forEach((key) => {
           if (key !== CACHE_NAME) {
-            // console.log('Removing old cache.', key);
             return caches.delete(key);
           }
         }));

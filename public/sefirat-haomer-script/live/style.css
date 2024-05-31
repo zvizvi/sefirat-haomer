@@ -6,7 +6,6 @@ body {
 body {
   font-family: 'Assistant', Arial, sans-serif;
   margin: 0;
-  -webkit-user-select: none;
   user-select: none;
 }
 

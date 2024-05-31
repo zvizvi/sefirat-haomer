@@ -1,18 +1,15 @@
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/sw.js').then(function (registration) {
-      // Registration was successful
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function (err) {
-      // registration failed :(
+    }, (err) => {
       console.log('ServiceWorker registration failed: ', err);
     });
   });
 }
 
-// global variable for the event object
-var installPromptEvent;
-window.addEventListener('beforeinstallprompt', function (event) {
+let installPromptEvent;
+window.addEventListener('beforeinstallprompt', (event) => {
   event.preventDefault();
   installPromptEvent = event;
   if (installPromptEvent !== undefined) {
@@ -21,7 +18,6 @@ window.addEventListener('beforeinstallprompt', function (event) {
 });
 
 function callInstallPrompt () {
-  // We can't fire the dialog before preventing default browser dialog
   if (installPromptEvent !== undefined) {
     installPromptEvent.prompt();
   }
