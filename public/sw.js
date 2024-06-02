@@ -2,7 +2,6 @@ const CACHE_NAME = 'site-cache-v1';
 const urlsToCache = [
   '/',
   '/style.css',
-  '/assets/hebcal.noloc.min.js',
   '/script.js',
   '/fonts/sbl/sbl.css',
   '/script.js',
@@ -10,6 +9,7 @@ const urlsToCache = [
   '/fonts/sbl/SBL_Hbrw.ttf',
   'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js',
   'https://cdn.jsdelivr.net/npm/dayjs@1/locale/he.js',
+  'https://cdn.jsdelivr.net/npm/hebcal@2.3/client/hebcal.noloc.min.js',
   'https://fonts.googleapis.com/css2?family=Assistant:wght@400..700&display=swap'
 ];
 
