@@ -2,13 +2,15 @@ const CACHE_NAME = 'site-cache-v1';
 const urlsToCache = [
   '/',
   '/style.css',
-  '/assets/moment-with-locales.min.js',
   '/assets/hebcal.noloc.min.js',
   '/script.js',
   '/fonts/sbl/sbl.css',
   '/script.js',
   '/assets/icons/logo-128.png',
-  '/fonts/sbl/SBL_Hbrw.ttf'
+  '/fonts/sbl/SBL_Hbrw.ttf',
+  'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js',
+  'https://cdn.jsdelivr.net/npm/dayjs@1/locale/he.js',
+  'https://fonts.googleapis.com/css2?family=Assistant:wght@400..700&display=swap'
 ];
 
 self.addEventListener('install', (event) => {

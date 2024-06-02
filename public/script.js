@@ -5,8 +5,9 @@ if (urlOptions.franknatan === 'true') {
 }
 
 let today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
-const moment = window.moment;
 const Hebcal = window.Hebcal;
+const dayjs = window.dayjs;
+dayjs.locale('he');
 const options = {};
 if (['sf', 'as', 'em'].includes(urlOptions.nusach)) {
   options.nusach = urlOptions.nusach;
@@ -32,15 +33,13 @@ const numberLetterList = {
 };
 const sefiraList = ['חסד', 'גבורה', 'תפארת', 'נצח', 'הוד', 'יסוד', 'מלכות'];
 
-moment.locale('he');
-
 function setupHebrewDate () {
   todayHebrewObj = Hebcal.HDate(new Date(today.toISOString()));
   todayHebrewObj.setLocation(31.783, 35.233); // Jerusalem
 }
 
 function setupDate () {
-  today = moment();
+  today = dayjs();
   setupHebrewDate();
 
   isAfterSunset = today.isAfter(todayHebrewObj.sunset());
@@ -62,7 +61,7 @@ function setupDate () {
   const hebrewDateElement = document.querySelector('.hebrew-date');
   weekDayElement.textContent = weekDay;
   hebrewDateElement.textContent = todayHebrew;
-  hebrewDateElement.setAttribute('datetime', moment().format());
+  hebrewDateElement.setAttribute('datetime', dayjs().format());
   document.title += (', ' + Hebcal.gematriya(todayHebrewObj.getYearObject('h').year % 5000));
 }
 

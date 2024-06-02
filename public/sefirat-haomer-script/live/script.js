@@ -3,8 +3,9 @@ document.addEventListener('contextmenu', (e) => {
 });
 
 let today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
-const moment = window.moment;
 const Hebcal = window.Hebcal;
+const dayjs = window.dayjs;
+dayjs.locale('he');
 const params = new URLSearchParams(location.search);
 const urlOptions = Object.fromEntries(params.entries());
 const options = {
@@ -40,15 +41,13 @@ const numberLetterList = {
 };
 const sefiraList = ['חסד', 'גבורה', 'תפארת', 'נצח', 'הוד', 'יסוד', 'מלכות'];
 
-moment.locale('he');
-
 function setupHebrewDate () {
   todayHebrewObj = Hebcal.HDate(new Date(today.toISOString()));
   todayHebrewObj.setLocation(31.783, 35.233); // Jerusalem
 }
 
 function setupDate () {
-  today = moment();
+  today = dayjs();
   setupHebrewDate();
 
   isAfterSunset = today.isAfter(todayHebrewObj.sunset());
