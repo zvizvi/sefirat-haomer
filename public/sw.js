@@ -6,10 +6,11 @@ const urlsToCache = [
   '/fonts/sbl/sbl.css',
   '/script.js',
   '/assets/icons/logo-128.png',
-  '/fonts/sbl/SBL_Hbrw.ttf',
   'https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js',
   'https://cdn.jsdelivr.net/npm/dayjs@1/locale/he.js',
   'https://cdn.jsdelivr.net/npm/hebcal@2.3/client/hebcal.noloc.min.js',
+  'https://cdn.jsdelivr.net/gh/zvizvi/sefirat-haomer@sbl/public/fonts/sbl/SBL_Hbrw.ttf',
+  'https://cdn.jsdelivr.net/gh/zvizvi/sefirat-haomer@sbl/public/fonts/sbl/SBL_Hbrw.eot',
   'https://fonts.googleapis.com/css2?family=Assistant:wght@400..700&display=swap'
 ];
 

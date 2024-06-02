@@ -2,5 +2,5 @@
   font-family: 'SBL hebrew';
   font-style: normal;
   font-weight: 400;
-  src: local('SBL hebrew'), url('SBL_Hbrw.ttf') format('truetype'), url('SBL_Hbrw.eot') format('opentype');
+  src: local('SBL hebrew'), url('https://cdn.jsdelivr.net/gh/zvizvi/sefirat-haomer@sbl/public/fonts/sbl/SBL_Hbrw.ttf') format('truetype'), url('https://cdn.jsdelivr.net/gh/zvizvi/sefirat-haomer@sbl/public/fonts/sbl/SBL_Hbrw.eot') format('opentype');
 }
