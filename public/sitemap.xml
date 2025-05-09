@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sefirat-haomer.vercel.app/</loc>
+    <loc>https://sefirat-haomer.pages.dev/</loc>
     <lastmod>2024-06-01</lastmod>
   </url>
   <url>
-    <loc>https://sefirat-haomer.vercel.app/?nusach=as</loc>
+    <loc>https://sefirat-haomer.pages.dev/?nusach=as</loc>
     <lastmod>2024-06-01</lastmod>
   </url>
   <url>
-    <loc>https://sefirat-haomer.vercel.app/?nusach=em</loc>
+    <loc>https://sefirat-haomer.pages.dev/?nusach=em</loc>
     <lastmod>2024-06-01</lastmod>
   </url>
   <url>
-    <loc>https://sefirat-haomer.vercel.app/sefirat-haomer-script/</loc>
+    <loc>https://sefirat-haomer.pages.dev/sefirat-haomer-script/</loc>
     <lastmod>2024-06-01</lastmod>
   </url>
 </urlset>

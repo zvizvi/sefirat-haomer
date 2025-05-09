@@ -10,7 +10,7 @@ window.writeCode = function name (params) {
   const hideDateCheckbox = document.getElementById('hide-date');
   const hideSefiraCheckbox = document.getElementById('hide-sefira');
   const fontSizeInput = document.getElementById('font-size');
-  let iframeSrc = 'https://sefirat-haomer.vercel.app/sefirat-haomer-script/live/?nusach=' + nusach;
+  let iframeSrc = 'https://sefirat-haomer.pages.dev/sefirat-haomer-script/live/?nusach=' + nusach;
   iframeSrc += hideDateCheckbox.checked ? '&hideDate=true' : '';
   iframeSrc += hideSefiraCheckbox.checked ? '&hideSefira=true' : '';
   iframeSrc += '&fontSize=' + fontSizeInput.value;
