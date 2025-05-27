@@ -83,10 +83,6 @@ body {
   margin: 0 15px 0 5px;
 }
 
-.content het {
-  display: inline-block;
-}
-
 .content .help-text:first-child {
   margin-right: 0;
 }
@@ -158,23 +154,20 @@ body {
 }
 
 .content .ana-bekoach .row {
-  display: block;
-  padding-left: 55px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   margin-bottom: 2px;
-  clear: both;
 }
 
 .content .ana-bekoach .row .current {
   text-shadow: 1px 1px 8px #66afe9;
 }
 
-.content .ana-bekoach span {
-  position: absolute;
-  left: 0;
-  bottom: 1px;
+.content .ana-bekoach .row > span {
   font-size: 12px;
-  line-height: 32px;
+  white-space: nowrap;
 }
 
 .content .ana-bekoach .ana-bekoach-row-content {
@@ -242,6 +235,10 @@ body {
 
 .hide {
   display: none;
+}
+
+.no-ligatures {
+  font-variant-ligatures: none;
 }
 
 /* nusach */
