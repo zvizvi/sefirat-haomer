@@ -84,7 +84,7 @@ function getDays (number) {
   } else if (number < 10) {
     day = numberLetterList[number] + ' יָמִים';
   } else if (number === 10) {
-    day = 'עַשָׂרָה יָמִים';
+    day = 'עֲשָׂרָה יָמִים';
   } else {
     if ([11, 12, 20, 30, 40].indexOf(number) >= 0) {
       day = numberLetterList[number];
