@@ -2,7 +2,7 @@ document.addEventListener('contextmenu', (e) => {
   e.preventDefault();
 });
 
-let today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
+let today, todayHebrewObj, isAfterTzeit, todayHebrew, todayOmer;
 const Hebcal = window.Hebcal;
 const dayjs = window.dayjs;
 dayjs.locale('he');
@@ -50,8 +50,8 @@ function setupDate () {
   today = dayjs();
   setupHebrewDate();
 
-  isAfterSunset = today.isAfter(todayHebrewObj.sunset());
-  if (isAfterSunset) {
+  isAfterTzeit = today.isAfter(todayHebrewObj.getZemanim().tzeit);
+  if (isAfterTzeit) {
     today = today.add(1, 'days');
     setupHebrewDate();
   }
@@ -64,7 +64,7 @@ function setupDate () {
     }
   } catch (error) { }
 
-  let weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
+  let weekDay = isAfterTzeit || today.hour() < 5 ? 'אור ל' : '';
   weekDay += 'יום ' + today.format('dddd');
   if (!options.hideDate) {
     const header = document.querySelector('.header');

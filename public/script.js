@@ -4,7 +4,7 @@ if (urlOptions.franknatan === 'true') {
   document.body.classList.add('franknatan');
 }
 
-let today, todayHebrewObj, isAfterSunset, todayHebrew, todayOmer;
+let today, todayHebrewObj, isAfterTzeit, todayHebrew, todayOmer;
 const Hebcal = window.Hebcal;
 const dayjs = window.dayjs;
 dayjs.locale('he');
@@ -42,8 +42,8 @@ function setupDate () {
   today = dayjs();
   setupHebrewDate();
 
-  isAfterSunset = today.isAfter(todayHebrewObj.sunset());
-  if (isAfterSunset) {
+  isAfterTzeit = today.isAfter(todayHebrewObj.getZemanim().tzeit);
+  if (isAfterTzeit) {
     today = today.add(1, 'days');
     setupHebrewDate();
   }
@@ -55,7 +55,7 @@ function setupDate () {
     todayOmer = 1;
   }
 
-  let weekDay = isAfterSunset || today.hour() < 5 ? 'אור ל' : '';
+  let weekDay = isAfterTzeit || today.hour() < 5 ? 'אור ל' : '';
   weekDay += 'יום ' + today.format('dddd');
   const weekDayElement = document.querySelector('.week-day');
   const hebrewDateElement = document.querySelector('.hebrew-date');
